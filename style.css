@@ -925,6 +925,52 @@ section {
   box-shadow: 0 16px 30px rgba(0, 123, 255, 0.2);
 }
 
+/* view project*/
+.project-link {
+  position: relative;
+  display: inline-block;
+  color: var(--primary-color, #007bff);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Underline on hover */
+.project-link::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color, #007bff);
+  transition: width 0.4s ease;
+}
+
+/* Blinking cursor */
+.project-link::after {
+  content: "|";
+  margin-left: 6px;
+  opacity: 0;
+  color: var(--primary-color, #007bff);
+  animation: none;
+  transition: opacity 0.3s ease;
+}
+
+/* On hover, animate underline and cursor */
+.project-link:hover::before {
+  width: 100%;
+}
+
+.project-link:hover::after {
+  opacity: 1;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
 /* === Image Styling === */
 .portfolio-card img {
   width: 100%;
