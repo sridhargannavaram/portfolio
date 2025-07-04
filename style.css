@@ -171,8 +171,8 @@ section {
 }
 
 .navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.97);
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.0);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
   padding: 15px 0;
 }
 
@@ -226,11 +226,6 @@ section {
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
-}
-.navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.0);
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.0);
-  padding: 15px 0;
 }
 
 /* === Hamburger (Mobile) === */
