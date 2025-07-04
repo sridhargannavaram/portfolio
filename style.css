@@ -924,8 +924,6 @@ section {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 16px 30px rgba(0, 123, 255, 0.2);
 }
-
-/* view project*/
 .project-link {
   position: relative;
   display: inline-block;
@@ -971,6 +969,7 @@ section {
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }
 }
+
 /* === Image Styling === */
 .portfolio-card img {
   width: 100%;
