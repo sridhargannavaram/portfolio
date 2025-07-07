@@ -260,38 +260,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 //Conctact connection
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("success-message");
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyY4z5TH1B7pYy_BQKGX2xu8xdO5kKsGrZJEmSlNfPz7_nKO3QrWV0Hqys23CPx8SLw/exec";
+  const form = document.forms["submit-to-google-sheet"];
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const data = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      subject: form.subject.value.trim(),
-      message: form.message.value.trim()
-    };
+    const formData = new FormData(form);
+    const ageChecked = document.getElementById("age").checked;
+    const exChecked = document.getElementById("ex").checked;
 
-    fetch("https://script.google.com/macros/s/AKfycbwxwMQTERjXbxblMQIVJFpidlRAzY8ktyIB-i8clmGkvvhJiS0R3hhC-HDFbYoWLR_IZg/exec", {
+    // Override form values for checkboxes
+    formData.set("age", ageChecked ? "Yes" : "No");
+    formData.set("ex", exChecked ? "Yes" : "No");
+
+    fetch(scriptURL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+      body: formData
     })
-    .then(res => res.json())
-    .then(response => {
-      if (response.result === "success") {
-        successMsg.style.display = "block";
+      .then(response => {
+        swal("Done", "Submitted Successfully.", "success");
         form.reset();
-      } else {
-        alert("Error: Submission failed.");
-      }
-    })
-    .catch(error => {
-      console.error("Submission error:", error);
-      alert("Something went wrong.");
-    });
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        swal("Error", "Something went wrong. Please try again!", "error");
+      });
   });
 });
+
