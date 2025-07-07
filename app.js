@@ -258,3 +258,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+//Conctact connection
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactForm");
+  const successMessage = document.getElementById("success-message");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+      })
+      .then((response) => {
+        if (response.ok) {
+          successMessage.style.display = "block";
+          form.reset();
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      })
+      .catch((error) => {
+        alert("Error occurred while sending the message.");
+        console.error(error);
+      });
+    });
+  }
+});
