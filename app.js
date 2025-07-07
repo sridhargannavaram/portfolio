@@ -260,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 //Conctact connection
 document.addEventListener("DOMContentLoaded", function () {
+  const scriptURL = "https://script.google.com/macros/s/AKfycbw82GNy5XaF9Us7MMx0pWRkf7iQd-mXKNeOXkgh-xal2be_JL8IaA9DpFKAzPHADKFHcA/exec";
   const form = document.getElementById("contactForm");
   const successMsg = document.getElementById("success-message");
 
@@ -268,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbzaqXwdPJ18m9sy90arX9Ajj2mIU7130z7o4dEB-9skUqrtLqlt9J8vmoCYupeGCet_iw/exec", {
+    fetch(scriptURL, {
       method: "POST",
       body: formData,
     })
@@ -277,15 +278,12 @@ document.addEventListener("DOMContentLoaded", function () {
           successMsg.style.display = "block";
           form.reset();
         } else {
-          alert("Something went wrong. Please try again.");
+          alert("Submission failed. Please try again.");
         }
       })
       .catch((error) => {
         console.error("Error!", error.message);
-        alert("Submission failed.");
+        alert("Network error. Try again.");
       });
   });
 });
-
-
-
