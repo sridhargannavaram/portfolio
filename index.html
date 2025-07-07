@@ -484,44 +484,14 @@ The workflow includes exploratory data analysis, feature correlation, and superv
                         <a href="https://www.instagram.com/soulvern_sri?igsh=eWZmeG5uN2JiZTBx" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                  <div class="contact-form" data-aos="fade-left">
-  <form action="https://formsubmit.co/gannavaramsridhar9515@gmail.com" method="POST" id="contactForm">
-    
-    <!-- Hidden Fields -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="box">
-    <input type="hidden" name="_autoresponse" value="Thanks for contacting me! I will get back to you soon.">
-    <input type="hidden" name="_next" value="https://sridhargannavaram.github.io/portfolio/?status=success">
-
-    <div class="form-group">
-      <input type="text" id="name" name="name" required>
-      <label for="name">Your Name</label>
-    </div>
-
-    <div class="form-group">
-      <input type="email" id="email" name="email" required>
-      <label for="email">Your Email</label>
-    </div>
-
-    <div class="form-group">
-      <input type="text" id="subject" name="subject" required>
-      <label for="subject">Subject</label>
-    </div>
-
-    <div class="form-group">
-      <textarea id="message" name="message" rows="5" required></textarea>
-      <label for="message">Your Message</label>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Send Message</button>
-
-    <!-- Success Message -->
-    <p id="success-message" style="color: green; font-weight: bold; margin-top: 15px; display: none;">
-      ✅ Message sent successfully!
-    </p>
-  </form>
-</div>
-
+                  <form id="contactForm" action="https://script.google.com/macros/s/AKfycbw1PPNDi42Iy2iUzGcVcrz6k8fQNuatOU1JDJGJiQklfhvNxA1NUaTqKuPFbRr_wts5Mg/exec" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <input type="text" name="subject" placeholder="Subject" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+  <p id="success" style="color: green; display: none;">✅ Message sent successfully!</p>
+</form>
 
             </div>
         </div>
