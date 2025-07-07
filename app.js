@@ -260,25 +260,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 //Conctact connection
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contactForm");
-  const success = document.getElementById("success");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Stop default form
-
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-    })
-      .then((res) => res.text())
-      .then((text) => {
-        success.style.display = "block"; // Show message
-        form.reset(); // Reset form
-      })
-      .catch((err) => {
-        alert("Something went wrong. Try again.");
-        console.error(err);
-      });
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("status") === "success") {
+      const successMessage = document.getElementById("success-message");
+      if (successMessage) {
+        successMessage.style.display = "block";
+        // Scroll to the success message
+        successMessage.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   });
-});
-
