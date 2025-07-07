@@ -270,3 +270,26 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+----------------
+  document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactForm");
+  const success = document.getElementById("success");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Stop default form
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then((res) => res.text())
+      .then((text) => {
+        success.style.display = "block"; // Show message
+        form.reset(); // Reset form
+      })
+      .catch((err) => {
+        alert("Something went wrong. Try again.");
+        console.error(err);
+      });
+  });
+});
