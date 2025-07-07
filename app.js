@@ -260,33 +260,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 //Conctact connection
 document.addEventListener("DOMContentLoaded", function () {
-  const scriptURL = "https://script.google.com/macros/s/AKfycbyY4z5TH1B7pYy_BQKGX2xu8xdO5kKsGrZJEmSlNfPz7_nKO3QrWV0Hqys23CPx8SLw/exec";
-  const form = document.forms["submit-to-google-sheet"];
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("success-message");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const formData = new FormData(form);
-    const ageChecked = document.getElementById("age").checked;
-    const exChecked = document.getElementById("ex").checked;
 
-    // Override form values for checkboxes
-    formData.set("age", ageChecked ? "Yes" : "No");
-    formData.set("ex", exChecked ? "Yes" : "No");
-
-    fetch(scriptURL, {
+    fetch("https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec", {
       method: "POST",
-      body: formData
+      body: formData,
     })
-      .then(response => {
-        swal("Done", "Submitted Successfully.", "success");
-        form.reset();
+      .then((response) => {
+        if (response.ok) {
+          successMsg.style.display = "block";
+          form.reset();
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error!", error.message);
-        swal("Error", "Something went wrong. Please try again!", "error");
+        alert("Submission failed.");
       });
   });
 });
+
 
 
