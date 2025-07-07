@@ -261,28 +261,37 @@ document.addEventListener('DOMContentLoaded', () => {
 //Conctact connection
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
-  const successMessage = document.getElementById("success-message");
+  const successMsg = document.getElementById("success-message");
 
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-      })
-      .then((response) => {
-        if (response.ok) {
-          successMessage.style.display = "block";
-          form.reset();
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      })
-      .catch((error) => {
-        alert("Error occurred while sending the message.");
-        console.error(error);
-      });
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim()
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbwxwMQTERjXbxblMQIVJFpidlRAzY8ktyIB-i8clmGkvvhJiS0R3hhC-HDFbYoWLR_IZg/exec", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.result === "success") {
+        successMsg.style.display = "block";
+        form.reset();
+      } else {
+        alert("Error: Submission failed.");
+      }
+    })
+    .catch(error => {
+      console.error("Submission error:", error);
+      alert("Something went wrong.");
     });
-  }
+  });
 });
