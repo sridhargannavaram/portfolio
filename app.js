@@ -259,31 +259,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 //Conctact connection
+//Conctact connection
 document.addEventListener("DOMContentLoaded", function () {
-  const scriptURL = "https://script.google.com/macros/s/AKfycbw82GNy5XaF9Us7MMx0pWRkf7iQd-mXKNeOXkgh-xal2be_JL8IaA9DpFKAzPHADKFHcA/exec";
   const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("success-message");
+  const successMessage = document.getElementById("success-message");
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const formData = new FormData(form);
-
-    fetch(scriptURL, {
-      method: "POST",
-      body: formData,
-    })
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+      })
       .then((response) => {
         if (response.ok) {
-          successMsg.style.display = "block";
+          successMessage.style.display = "block";
           form.reset();
         } else {
-          alert("Submission failed. Please try again.");
+          alert("Something went wrong. Please try again.");
         }
       })
       .catch((error) => {
-        console.error("Error!", error.message);
-        alert("Network error. Try again.");
+        alert("Error occurred while sending the message.");
+        console.error(error);
       });
-  });
+    });
+  }
 });
