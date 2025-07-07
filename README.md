@@ -6,8 +6,6 @@ A modern, responsive portfolio website with admin dashboard functionality.
 
 - **Responsive Design**: Works on all device sizes
 - **Animations**: Smooth scroll animations and interactive elements
-- **Admin Dashboard**: Content management system for portfolio updates
-- **Firebase Integration**: Real-time database and authentication
 - **Modern UI**: Clean, professional design with dark/light modes
 
 ## Technologies Used
@@ -15,7 +13,6 @@ A modern, responsive portfolio website with admin dashboard functionality.
 - HTML5, CSS3, JavaScript
 - GSAP for advanced animations
 - AOS (Animate On Scroll) library
-- Firebase (Authentication, Firestore, Storage)
 - Font Awesome icons
 - Google Fonts (Poppins)
 
