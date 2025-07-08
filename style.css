@@ -1274,6 +1274,10 @@ section {
 /* project Section END */
 
 /* Contact Section */
+.contact-info a:hover {
+  text-decoration: underline;
+  color: var(--primary-color,#007bff);
+    
 .contact-content {
     display: flex;
     gap: 50px;
