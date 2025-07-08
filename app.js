@@ -261,46 +261,35 @@ document.addEventListener('DOMContentLoaded', () => {
 //Conctact connection
 
 ----------------
- document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contactForm");
-  const success = document.getElementById("success");
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent default submission
+    // Get form values
+    var name = e.parameter.name;
+    var email = e.parameter.email;
+    var subject = e.parameter.subject;
+    var message = e.parameter.message;
+    var timestamp = new Date();
 
-    // Button loading animation
-    const submitBtn = form.querySelector("button[type='submit']");
-    const originalText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = "Sending...";
+    // Append to Google Sheet
+    sheet.appendRow([timestamp, name, email, subject, message]);
 
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-    })
-      .then((res) => res.text())
-      .then((text) => {
-        success.style.display = "block";  // ✅ Show success message
-        form.reset();                     // ✅ Reset form
+    // Email to YOU (the owner)
+    var ownerEmail = "gannavaramsridhar9515@gmail.com";  // <-- your email
+    var bodyToOwner = `New Message Received\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage:\n${message}`;
+    MailApp.sendEmail(ownerEmail, "New Contact Form Submission", bodyToOwner);
 
-        // Reset button after 1s
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-        }, 1000);
+    // Auto-response to the USER
+    var userBody = `Hi ${name},\n\nThanks for reaching out! I’ve received your message:\n\n"${message}"\n\nI'll get back to you shortly.\n\n- Sridhar`;
+    MailApp.sendEmail(email, "Thank you for contacting Sridhar", userBody);
 
-        // Hide success after 5s
-        setTimeout(() => {
-          success.style.display = "none";
-        }, 5000);
-      })
-      .catch((err) => {
-        alert("❌ Something went wrong. Please try again.");
-        console.error(err);
+    // Return success
+    return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+  } catch (error) {
+    Logger.log(error);
+    return ContentService.createTextOutput("Error: " + error.message);
+  }
+}
 
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      });
-  });
-});
 
