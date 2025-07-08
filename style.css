@@ -1276,8 +1276,9 @@ section {
 /* Contact Section */
 .contact-info a:hover {
   text-decoration: underline;
-  color: var(--primary-color,#007bff);
-    
+  color: var(--primary-color,#007bff); /* Use your theme's color */
+}
+
 .contact-content {
     display: flex;
     gap: 50px;
