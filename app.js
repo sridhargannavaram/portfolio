@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (e) {
     e.preventDefault(); // prevent default form submission
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycby-vb0Rj3KnOAbZMbl6uhoEwF77lUCKyRUnxi4RFOKTiMfQvkhYWGUfXgHUKxV7jQxGOA/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzgk-wv3hYZDSHEPF8HcG5nyRcWTr0xNmaISzCPTlJkhdhR4TzTIRjrzBqM1aQ9tjGZlg/exec";
     const formData = new FormData(form);
 
     fetch(scriptURL, {
