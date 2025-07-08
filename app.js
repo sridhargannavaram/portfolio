@@ -259,8 +259,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 //Conctact connection
-
-----------------
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const success = document.getElementById("success");
