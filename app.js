@@ -261,35 +261,28 @@ document.addEventListener('DOMContentLoaded', () => {
 //Conctact connection
 
 ----------------
-function doPost(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactForm");
+  const success = document.getElementById("success");
 
-    // Get form values
-    var name = e.parameter.name;
-    var email = e.parameter.email;
-    var subject = e.parameter.subject;
-    var message = e.parameter.message;
-    var timestamp = new Date();
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    // Append to Google Sheet
-    sheet.appendRow([timestamp, name, email, subject, message]);
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then((res) => res.text())
+      .then((text) => {
+        success.style.display = "block";
+        form.reset();
+      })
+      .catch((err) => {
+        alert("Something went wrong. Try again.");
+        console.error(err);
+      });
+  });
+});
 
-    // Email to YOU (the owner)
-    var ownerEmail = "gannavaramsridhar9515@gmail.com";  // <-- your email
-    var bodyToOwner = `New Message Received\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage:\n${message}`;
-    MailApp.sendEmail(ownerEmail, "New Contact Form Submission", bodyToOwner);
-
-    // Auto-response to the USER
-    var userBody = `Hi ${name},\n\nThanks for reaching out! I’ve received your message:\n\n"${message}"\n\nI'll get back to you shortly.\n\n- Sridhar`;
-    MailApp.sendEmail(email, "Thank you for contacting Sridhar", userBody);
-
-    // Return success
-    return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
-  } catch (error) {
-    Logger.log(error);
-    return ContentService.createTextOutput("Error: " + error.message);
-  }
-}
 
 
