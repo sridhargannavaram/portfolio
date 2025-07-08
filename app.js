@@ -264,23 +264,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const success = document.getElementById("success");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); // prevent default form submission
 
-    fetch(form.action, {
+    const scriptURL = "https://script.google.com/macros/s/AKfycby-vb0Rj3KnOAbZMbl6uhoEwF77lUCKyRUnxi4RFOKTiMfQvkhYWGUfXgHUKxV7jQxGOA/exec";
+    const formData = new FormData(form);
+
+    fetch(scriptURL, {
       method: "POST",
-      body: new FormData(form),
+      body: formData,
     })
-      .then((res) => res.text())
-      .then((text) => {
+      .then((response) => {
         success.style.display = "block";
+        success.style.opacity = "1";
         form.reset();
+
+        setTimeout(() => {
+          success.style.opacity = "0";
+          success.style.display = "none";
+        }, 5000);
       })
-      .catch((err) => {
+      .catch((error) => {
         alert("Something went wrong. Try again.");
-        console.error(err);
+        console.error("Error!", error.message);
       });
   });
 });
+
 
 
 
