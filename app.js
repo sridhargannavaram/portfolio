@@ -259,17 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 //Conctact connection
-document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("status") === "success") {
-      const successMessage = document.getElementById("success-message");
-      if (successMessage) {
-        successMessage.style.display = "block";
-        // Scroll to the success message
-        successMessage.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  });
+
 ----------------
  document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
