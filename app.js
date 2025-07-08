@@ -263,26 +263,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const success = document.getElementById("success");
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxd7b_46UVxCsng1Z-bUYcAQzgjRyEUItmh5f89eVhxCG5_rHNTA6ES-Sh15TOIFgrxSA/exec";
-
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    fetch(scriptURL, {
+    fetch(form.action, {
       method: "POST",
       body: new FormData(form),
     })
       .then((res) => res.text())
       .then((text) => {
-        if (text.toLowerCase().includes("success")) {
+        if (text.includes("Success")) {
           success.style.display = "block";
           form.reset();
         } else {
-          alert("Error: " + text);
+          alert("Something went wrong. Response: " + text);
         }
       })
       .catch((err) => {
-        alert("Failed to send. Please try again.");
+        alert("Failed to send message.");
         console.error(err);
       });
   });
