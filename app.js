@@ -262,25 +262,26 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const success = document.getElementById("success");
+  const scriptURL = "https://script.google.com/macros/s/AKfycbw1PPNDi42Iy2iUzGcVcrz6k8fQNuatOU1JDJGJiQklfhvNxA1NUaTqKuPFbRr_wts5Mg/exec"; // Your web app URL
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); // prevent form from reloading page
 
-    fetch(form.action, {
+    fetch(scriptURL, {
       method: "POST",
       body: new FormData(form),
     })
       .then((res) => res.text())
       .then((text) => {
         if (text.includes("Success")) {
-          success.style.display = "block";
-          form.reset();
+          success.style.display = "block"; // show message
+          form.reset(); // clear form
         } else {
-          alert("Something went wrong. Response: " + text);
+          alert("Something went wrong: " + text);
         }
       })
       .catch((err) => {
-        alert("Failed to send message.");
+        alert("Failed to send. Try again.");
         console.error(err);
       });
   });
