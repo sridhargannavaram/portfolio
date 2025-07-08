@@ -262,10 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const success = document.getElementById("success");
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxd7b_46UVxCsng1Z-bUYcAQzgjRyEUItmh5f89eVhxCG5_rHNTA6ES-Sh15TOIFgrxSA/exec"; // Your web app URL
+
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxd7b_46UVxCsng1Z-bUYcAQzgjRyEUItmh5f89eVhxCG5_rHNTA6ES-Sh15TOIFgrxSA/exec";
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // prevent form from reloading page
+    e.preventDefault();
 
     fetch(scriptURL, {
       method: "POST",
@@ -273,19 +274,20 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((res) => res.text())
       .then((text) => {
-        if (text.includes("Success")) {
-          success.style.display = "block"; // show message
-          form.reset(); // clear form
+        if (text.toLowerCase().includes("success")) {
+          success.style.display = "block";
+          form.reset();
         } else {
-          alert("Something went wrong: " + text);
+          alert("Error: " + text);
         }
       })
       .catch((err) => {
-        alert("Failed to send. Try again.");
+        alert("Failed to send. Please try again.");
         console.error(err);
       });
   });
 });
+
 
 
 
