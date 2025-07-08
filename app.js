@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const success = document.getElementById("success");
-  const scriptURL = "https://script.google.com/macros/s/AKfycbw1PPNDi42Iy2iUzGcVcrz6k8fQNuatOU1JDJGJiQklfhvNxA1NUaTqKuPFbRr_wts5Mg/exec"; // Your web app URL
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxMHDy3pZwesUzETjAeYSu1KMg4gVXQgmTc809KnodB0O70yDGT_gyjkAK_v3VSuSQzow/exec"; // Your web app URL
 
   form.addEventListener("submit", function (e) {
     e.preventDefault(); // prevent form from reloading page
