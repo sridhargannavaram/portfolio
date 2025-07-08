@@ -1116,7 +1116,9 @@ section {
 }
 
 /* project Section END */
-
+#success {
+  transition: opacity 0.4s ease;
+}
 /* Contact Section */
 .contact-content {
     display: flex;
