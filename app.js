@@ -271,12 +271,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 ----------------
-  document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const success = document.getElementById("success");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Stop default form
+    e.preventDefault(); // Prevent default submission
+
+    // Button loading animation
+    const submitBtn = form.querySelector("button[type='submit']");
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Sending...";
 
     fetch(form.action, {
       method: "POST",
@@ -284,12 +290,27 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((res) => res.text())
       .then((text) => {
-        success.style.display = "block"; // Show message
-        form.reset(); // Reset form
+        success.style.display = "block";  // ✅ Show success message
+        form.reset();                     // ✅ Reset form
+
+        // Reset button after 1s
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }, 1000);
+
+        // Hide success after 5s
+        setTimeout(() => {
+          success.style.display = "none";
+        }, 5000);
       })
       .catch((err) => {
-        alert("Something went wrong. Try again.");
+        alert("❌ Something went wrong. Please try again.");
         console.error(err);
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
       });
   });
 });
+
