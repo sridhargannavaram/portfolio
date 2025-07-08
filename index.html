@@ -523,23 +523,15 @@ The workflow includes exploratory data analysis, feature correlation, and superv
   </form>
 </div>
 
-    <form
-  id="contactForm"
-  action="https://script.google.com/macros/s/AKfycbwcZa57vtWYO8XJ96VR87G6S2ztbQCo-Xv6ryndgT3zbhEBXpaxrQ4D0MfZOne_PZg8eA/exec"
-  method="POST"
->
+    <form id="contactForm" action="https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec" method="POST">
   <input type="text" name="name" placeholder="Your Name" required />
   <input type="email" name="email" placeholder="Your Email" required />
   <input type="text" name="subject" placeholder="Subject" required />
   <textarea name="message" placeholder="Your Message" required></textarea>
-
   <button type="submit">Send Message</button>
-
-  <!-- Success Message -->
-  <p id="success" style="color: green; font-weight: bold; margin-top: 15px; display: none;">
-    ✅ Message sent successfully!
-  </p>
+  <p id="success" style="color: green; display: none;">✅ Message sent successfully!</p>
 </form>
+
 
             </div>
         </div>
